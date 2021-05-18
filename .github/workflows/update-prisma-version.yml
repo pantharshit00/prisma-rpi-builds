@@ -23,7 +23,7 @@ jobs:
           echo '${{ steps.check_update.outputs.new_prisma_version }}' > version
           git config --global user.name 'Harshit Pant'
           git config --global user.email 'pantharshit00@gmail.com'
-          git commit -am "chore: update prisma version for ${{ steps.check_update.outputs.new_prisma_version }}"
+          git commit -am "chore: auto update prisma version for ${{ steps.check_update.outputs.new_prisma_version }}"
           git push
       - name: Trigger build
         if: ${{ steps.check_update.outputs.new_prisma_version }}

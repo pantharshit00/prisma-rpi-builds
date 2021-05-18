@@ -35,10 +35,12 @@ jobs:
           use-cross: true
           command: build
           args: --target armv7-unknown-linux-gnueabihf --release
-      - uses: actions/upload-artifact@v2
+      - uses: ncipollo/release-action@v1
         with:
-          name: binaries
-          path: |
+          tag: ${{ github.event.inputs.tag }}
+          commit: master
+          body: "Automatic release via CI: ${{ github.event.inputs.tag }}"
+          artifact: |
             ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/query-engine
             ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/prisma-fmt
             ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/migration-engine
