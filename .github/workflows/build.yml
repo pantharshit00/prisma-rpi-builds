@@ -39,6 +39,7 @@ jobs:
         with:
           tag: ${{ github.event.inputs.tag }}
           commit: master
+          token: ${{ secrets.GITHUB_TOKEN }}
           body: "Automatic release via CI: ${{ github.event.inputs.tag }}"
           artifacts: |
             ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/query-engine
