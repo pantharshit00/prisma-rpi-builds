@@ -9,7 +9,7 @@ jobs:
       - name: Checkout ${{ github.event.inputs.commit }}
         uses: actions/checkout@v2
         with:
-          repository: 'prisma/engines'
+          repository: 'prisma/prisma-engines'
           ref: '2.22.1'
 
       - uses: actions-rs/toolchain@v1
