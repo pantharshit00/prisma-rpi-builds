@@ -4,7 +4,7 @@ This repository contains precompiled [prisma-engines](https://github.com/prisma/
 
 ## How to use this repository
 
-1. Download all 4 engines build from GitHub releases:
+1. Download all 4 engines build from GitHub releases: https://github.com/pantharshit00/prisma-rpi-builds/releases
 2. Extract these engines to a folder
 3. Set the following environment variables in your shell or in the `.env` file:
 
