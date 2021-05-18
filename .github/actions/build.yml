@@ -1,0 +1,37 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: "ARMv7 engines build on branch ${{ github.event.ref }} for commit ${{ github.event.inputs.commit }}"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout ${{ github.event.inputs.commit }}
+        uses: actions/checkout@v2
+        with:
+          repository: 'prisma/engines'
+          ref: '2.22.1'
+
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: armv7-unknown-linux-gnueabihf
+          override: true
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - uses: actions-rs/cargo@v1
+        with:
+          use-cross: true
+          command: build
+          args: --release --target armv7-unknown-linux-gnueabihf
+      - uses: actions/upload-artifact@v2
+        with:
+          name: binaries
+          path: |
+            ${{ github.workspace }}/target/release/*
