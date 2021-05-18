@@ -19,4 +19,4 @@ PRISMA_FMT_BINARY=/path/to/prisma-fmt
 
 ## Additional notes
 
-CI in this repository check for a new major Prisma version everyday and if there is a new release avaliable, it will automatically build the engines and make a new release.
+CI in this repository checks for a new major Prisma version everyday and if there is a new release avaliable, it will automatically build the engines and make a new release.
