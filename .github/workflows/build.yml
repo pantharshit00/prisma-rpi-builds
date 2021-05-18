@@ -40,7 +40,7 @@ jobs:
           tag: ${{ github.event.inputs.tag }}
           commit: master
           body: "Automatic release via CI: ${{ github.event.inputs.tag }}"
-          artifact: |
+          artifacts: |
             ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/query-engine
             ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/prisma-fmt
             ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/migration-engine
