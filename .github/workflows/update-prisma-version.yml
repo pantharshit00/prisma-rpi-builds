@@ -1,7 +1,9 @@
+name: Update prisma version
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
 jobs:
   check:
     name: Check for Prisma CLI update
@@ -14,7 +16,7 @@ jobs:
         run: yarn
       - name: Check for Prisma CLI update
         id: check_update
-        run: node check_for_version.js
+        run: node check-for-version.js
       - name: Update version
         if: ${{ steps.check_update.outputs.new_prisma_version }}
         run: |
