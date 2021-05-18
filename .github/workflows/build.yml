@@ -1,16 +1,21 @@
+name: build armv7
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: "Commit on the given branch to build"
+        required: true
 
 jobs:
   build:
-    name: "ARMv7 engines build on branch ${{ github.event.ref }} for commit ${{ github.event.inputs.commit }}"
+    name: "ARMv7 engines build on tag ${{ github.event.inputs.tag }}"
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout ${{ github.event.inputs.commit }}
+      - name: Checkout ${{ github.event.inputs.tag }}
         uses: actions/checkout@v2
         with:
           repository: 'prisma/prisma-engines'
-          ref: '2.22.1'
+          ref: ${{ github.event.inputs.tag }}
 
       - uses: actions-rs/toolchain@v1
         with:

@@ -1,0 +1,32 @@
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  check:
+    name: Check for Prisma CLI update
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+      - name: Install Dependencies
+        run: yarn
+      - name: Check for Prisma CLI update
+        id: check_update
+        run: node check_for_version.js
+      - name: Update version
+        if: ${{ steps.check_update.outputs.new_prisma_version }}
+        run: |
+          echo '${{ steps.check_update.outputs.new_prisma_version }}' > version
+          git config --global user.name 'Harshit Pant'
+          git config --global user.email 'pantharshit00@gmail.com'
+          git commit -am "chore: update prisma version for ${{ steps.check_update.outputs.new_prisma_version }}"
+          git push
+      - name: Trigger build
+        if: ${{ steps.check_update.outputs.new_prisma_version }}
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: build armv7
+          token: ${{ secrets.GH_TOKEN }}
+          inputs: '{ "tag": "${{ steps.check_update.outputs.new_prisma_version }}" }'

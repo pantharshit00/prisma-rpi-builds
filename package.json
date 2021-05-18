@@ -1,0 +1,11 @@
+{
+  "name": "prisma-rpi-builds",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:pantharshit00/prisma-rpi-builds.git",
+  "author": "Harshit Pant <pantharshit00@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
