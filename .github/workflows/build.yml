@@ -29,13 +29,13 @@ jobs:
         with:
           use-cross: true
           command: build
-          args: --target armv7-unknown-linux-gnueabihf
+          args: --target armv7-unknown-linux-gnueabihf --release
       - uses: actions/upload-artifact@v2
         with:
           name: binaries
           path: |
-            ${{ github.workspace }}/target/release/query-engine
-            ${{ github.workspace }}/target/release/prisma-fmt
-            ${{ github.workspace }}/target/release/migration-engine
-            ${{ github.workspace }}/target/release/introspection-engine
-            ${{ github.workspace }}/target/release/query_engine_napi.so
+            ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/query-engine
+            ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/prisma-fmt
+            ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/migration-engine
+            ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/introspection-engine
+            ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/query_engine_napi.so
