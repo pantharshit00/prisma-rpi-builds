@@ -1,4 +1,4 @@
-## Prisma precompile builds for Raspberry Pi (armv7)
+## Prisma precompiled builds for Raspberry Pi (armv7)
 
 This repository contains precompiled [prisma-engines](https://github.com/prisma/prisma-engines) for Raspberry Pi.
 
