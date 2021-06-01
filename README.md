@@ -4,6 +4,8 @@ This repository contains precompiled [prisma-engines](https://github.com/prisma/
 
 ## How to use this repository
 
+(This mostly follows this documentation piece, please read this once: https://www.prisma.io/docs/concepts/components/prisma-engines#using-custom-engine-binaries)
+
 1. Download all 4 Engine files from this repository's GitHub releases page: https://github.com/pantharshit00/prisma-rpi-builds/releases
    - Optionally you can also download the shared `.so` Node API library
 2. Put all the downloaded files into a folder in your project
