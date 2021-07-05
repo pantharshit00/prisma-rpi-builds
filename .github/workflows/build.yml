@@ -46,4 +46,4 @@ jobs:
             ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/prisma-fmt,
             ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/migration-engine,
             ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/introspection-engine,
-            ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/libquery_engine_napi.so
+            ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/libquery_engine.so 
