@@ -33,10 +33,8 @@ jobs:
         run: |-
           cat <<EOF > Dockerfile
             FROM rustembedded/cross:armv7-unknown-linux-gnueabihf
-            ENV OPENSSL_VERSION=openssl-1.1.1l
-            ENV DOWNLOAD_SITE=https://www.openssl.org/source
-            RUN curl -oL ${DOWNLOAD_SITE}/${OPENSSL_VERSION}.tar.gz && tar zxf ${OPENSSL_VERSION}.tar.gz
-            RUN cd ${OPENSSL_VERSION} && ./Configure linux-armv4 --cross-compile-prefix=/usr/bin/armv7-linux-gnu- --prefix=/opt/openssl-arm --openssldir=/opt/openssl-arm -static && make install
+            RUN curl -oL https://www.openssl.org/source/openssl-1.1.1l.tar.gz && tar zxf openssl-1.1.1l.tar.gz
+            RUN cd openssl-1.1.1l && ./Configure linux-armv4 --cross-compile-prefix=/usr/bin/armv7-linux-gnu- --prefix=/opt/openssl-arm --openssldir=/opt/openssl-arm -static && make install
             # This env var configures rust-openssl to use the cross compiled version
             ENV OPENSSL_DIR=/opt/openssl-arm
           EOF
