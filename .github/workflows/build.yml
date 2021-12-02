@@ -29,18 +29,18 @@ jobs:
             ~/.cargo/git
             target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-      - name: Download openssl script
-        run: |
-          wget https://raw.githubusercontent.com/rust-embedded/cross/c183ee37a9dc6b0e6b6a6ac9c918173137bad4ef/docker/openssl.sh
       - name: Write Docker Image
         run: |-
           cat <<EOF > Dockerfile
             FROM rustembedded/cross:armv7-unknown-linux-gnueabihf
-            COPY openssl.sh /
-            RUN bash /openssl.sh linux-armv4 arm-linux-gnueabihf-
-            ENV OPENSSL_DIR=/openssl
-            ENV OPENSSL_INCLUDE_DIR=/openssl/include
-            ENV OPENSSL_LIB_DIR=/openssl/lib
+            # cross compile OpenSSL
+            # latest version can be found here: https://www.openssl.org/source/
+            ENV OPENSSL_VERSION=openssl-1.1.1l
+            ENV DOWNLOAD_SITE=https://www.openssl.org/source
+            RUN wget $DOWNLOAD_SITE/$OPENSSL_VERSION.tar.gz && tar zxf $OPENSSL_VERSION.tar.gz
+            RUN cd $OPENSSL_VERSION && ./Configure linux-armv4 --cross-compile-prefix=/usr/bin/armv7-linux-gnu- --prefix=/opt/openssl-arm --openssldir=/opt/openssl-arm -static && make install
+            # This env var configures rust-openssl to use the cross compiled version
+            ENV OPENSSL_DIR=/opt/openssl-arm
           EOF
       - name: Build image
         run: |
