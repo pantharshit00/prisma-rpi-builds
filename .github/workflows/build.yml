@@ -29,7 +29,7 @@ jobs:
             ~/.cargo/git
             target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-      - name: Build image with openssl
+      - name: Setup image with openssl
         run: |
           wget https://raw.githubusercontent.com/rust-embedded/cross/c183ee37a9dc6b0e6b6a6ac9c918173137bad4ef/docker/openssl.sh
           cat <<EOF > Dockerfile
@@ -40,13 +40,18 @@ jobs:
           OPENSSL_INCLUDE_DIR=/openssl/include \
           OPENSSL_LIB_DIR=/openssl/lib \
           EOF
+      - name: Build image
+        run: |
           docker build -t build-image:latest .
+
       - name: Setup cross with custom image
         run: |
           cat <<EOF > Cross.toml
           [target.aarch64-unknown-linux-gnu]
           image = "build-image:latest"
           EOF
+      - name: List files for verification
+        run: ls -al
           
       - uses: actions-rs/cargo@v1
         with:
