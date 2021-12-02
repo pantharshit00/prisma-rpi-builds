@@ -42,9 +42,10 @@ jobs:
             OPENSSL_INCLUDE_DIR=/openssl/include \
             OPENSSL_LIB_DIR=/openssl/lib \
           EOF
-          cat Dockerfile
       - name: Build image
-        run: docker build -t build-image:latest .
+        run: cat Dockerfile
+      
+      - run: exit 1
 
       - name: Setup cross with custom image
         run: |-
