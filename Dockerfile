@@ -2,7 +2,7 @@ FROM debian:stretch
 
 ENV PATH=/root/.cargo/bin:$PATH
 
-RUN apt-get update && apt-get -y install wget curl git make build-essential clang libz-dev libsqlite3-dev openssl libssl-dev pkg-config gzip mingw-w64 g++ zlib1g-dev libmpc-dev libmpfr-dev libgmp-dev libc6-dev-armhf-cross g++-arm-linux-gnueabihf
+RUN apt-get update && apt-get -y install wget curl git make build-essential clang libz-dev libsqlite3-dev openssl libssl-dev pkg-config gzip mingw-w64 g++ zlib1g-dev libmpc-dev libmpfr-dev libgmp-dev libc6-dev-armhf-cross g++-arm-linux-gnueabihf libmagic-dev
 
 # cross compile OpenSSL
 # latest version can be found here: https://www.openssl.org/source/
