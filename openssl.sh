@@ -7,6 +7,7 @@ main() {
 
     local dependencies=(
         ca-certificates
+        openssl
         curl
         m4
         make
