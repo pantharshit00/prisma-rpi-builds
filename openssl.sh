@@ -1,13 +1,12 @@
 set -ex
 
 main() {
-    local version=1.1.1h
+    local version=1.0.2p
     local os=$1 \
           triple=$2
 
     local dependencies=(
         ca-certificates
-        openssl
         curl
         m4
         make
@@ -20,7 +19,6 @@ main() {
     for dep in ${dependencies[@]}; do
         if ! dpkg -L $dep; then
             apt-get install --no-install-recommends -y $dep
-            purge_list+=( $dep )
         fi
     done
 
@@ -38,8 +36,6 @@ main() {
     nice make -j$(nproc)
     make install
 
-    # clean up
-    apt-get purge --auto-remove -y ${purge_list[@]}
 
     popd
 
