@@ -4,7 +4,7 @@ ENV PATH=/root/.cargo/bin:$PATH
 ARG ZLIB_VERSION=1.2.11
 
 
-RUN apt-get update && apt-get -y install wget curl git make build-essential clang libz-dev libsqlite3-dev openssl libssl-dev pkg-config gzip mingw-w64 g++ zlib1g-dev libmpc-dev libmpfr-dev libgmp-dev libc6-dev-armhf-cross g++-arm-linux-gnueabihf libmagic-dev
+RUN apt-get update && apt-get -y install wget curl git make build-essential clang libz-dev libsqlite3-dev pkg-config gzip mingw-w64 g++ libmpc-dev libmpfr-dev libgmp-dev libc6-dev-armhf-cross g++-arm-linux-gnueabihf libmagic-dev
 
 # cross compile zlib
 RUN echo "Building zlib" && \
