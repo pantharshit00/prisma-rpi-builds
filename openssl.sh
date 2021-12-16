@@ -1,7 +1,7 @@
 set -ex
 
 main() {
-    local version=1.0.2p
+    local version=1.1.1m
     local os=$1 \
           triple=$2
 
@@ -27,11 +27,19 @@ main() {
     pushd $td
     curl --insecure https://www.openssl.org/source/openssl-$version.tar.gz | \
         tar --strip-components=1 -xz
-    AR=${triple}ar CC=${triple}gcc ./Configure \
-      --prefix=/openssl \
+    export AR=${triple}ar 
+    export CC=${triple}gcc 
+    ./Configure \
+      --prefix=/build/openssl \
       no-dso \
+      no-shared \
+      no-ssl3 \
+      no-tests \
+      no-comp \
+      no-zlib \
+      no-zlib-dynamic \
+      --libdir=lib \
       $os \
-      -fPIC \
       ${@:3}
     nice make -j$(nproc)
     make install
