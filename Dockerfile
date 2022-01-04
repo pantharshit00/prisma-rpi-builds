@@ -12,6 +12,20 @@ RUN cd $OPENSSL_VERSION && ./Configure linux-armv4 --cross-compile-prefix=/usr/b
 
 ENV OPENSSL_DIR=/opt/openssl-arm
 
+
+# compile zlib
+
+ARG ZLIB_VERSION=1.2.11
+RUN echo "Building zlib" && \
+    cd /tmp && \
+    curl -fLO "http://zlib.net/zlib-$ZLIB_VERSION.tar.gz" && \
+    tar xzf "zlib-$ZLIB_VERSION.tar.gz" && cd "zlib-$ZLIB_VERSION" && \
+    CC=arm-linux-gnueabihf-gcc AR=arm-linux-gnueabihf-ar RANLIB=rm-linux-gnueabihf-ranlib ./configure --static --prefix=/opt/zlib-arm && \
+    make && make install && \
+    rm -r /tmp/*
+
+ENV LIBZ_SYS_STATIC=1
+
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 RUN rustup target add armv7-unknown-linux-gnueabihf
 RUN rustup component add clippy
