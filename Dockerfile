@@ -3,7 +3,7 @@ FROM rustembedded/cross:armv7-unknown-linux-gnueabihf
 COPY openssl.sh /
 RUN bash /openssl.sh linux-armv4 arm-linux-gnueabihf- 
 
-RUN apt-get install ca-certificates -y
+RUN apt-get install ca-certificates pkg-config -y
 
 ENV OPENSSL_DIR=/build/openssl
 ENV OPENSSL_INCLUDE_DIR=/build/openssl/include

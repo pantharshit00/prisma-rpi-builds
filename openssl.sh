@@ -15,7 +15,6 @@ main() {
 
     # NOTE cross toolchain must be already installed
     apt-get update
-    local purge_list=()
     for dep in ${dependencies[@]}; do
         if ! dpkg -L $dep; then
             apt-get install --no-install-recommends -y $dep
