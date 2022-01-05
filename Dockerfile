@@ -20,7 +20,9 @@ RUN echo "Building zlib" && \
     cd /tmp && \
     curl -fLO "http://zlib.net/zlib-$ZLIB_VERSION.tar.gz" && \
     tar xzf "zlib-$ZLIB_VERSION.tar.gz" && cd "zlib-$ZLIB_VERSION" && \
-    CC=arm-linux-gnueabihf-gcc AR=arm-linux-gnueabihf-ar RANLIB=rm-linux-gnueabihf-ranlib ./configure --static --prefix=/opt/zlib-arm && \
+    CHOST=arm CC=/usr/bin/arm-linux-gnueabihf-gcc \
+    AR=/usr/bin/arm-linux-gnueabihf-ar RANLIB=/usr/bin/arm-linux-gnueabihf-ranlib \
+    ./configure --static --prefix=/opt/zlib && \
     make && make install && \
     rm -r /tmp/*
 
