@@ -34,7 +34,7 @@ jobs:
         run: |-
           cat <<EOF > Cross.toml
             [target.armv7-unknown-linux-gnueabihf]
-            image = "pantharshit00/prisma-armv7-build-image:latest"
+            image = "ossystems/rust-cross:armv7-unknown-linux-gnueabihf-libarchive-latest"
           EOF
       
       - name: List files for verification
@@ -44,7 +44,7 @@ jobs:
         with:
           use-cross: true
           command: build
-          args: --target armv7-unknown-linux-gnueabihf --features vendored-openssl --release
+          args: --target armv7-unknown-linux-gnueabihf --release
       - name: Rename Node API file
         run: |
           mv ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/libquery_engine.so ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/libquery_engine_napi.so.node
