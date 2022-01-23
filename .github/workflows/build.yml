@@ -34,7 +34,7 @@ jobs:
         run: |-
           cat <<EOF > Cross.toml
             [target.armv7-unknown-linux-gnueabihf]
-            image = "ossystems/rust-cross:armv7-unknown-linux-gnueabihf-libarchive-latest"
+            image = "pantharshit00/prisma-armv7-build-image:latest"
           EOF
       
       - name: List files for verification
