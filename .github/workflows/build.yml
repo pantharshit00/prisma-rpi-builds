@@ -44,7 +44,7 @@ jobs:
         with:
           use-cross: true
           command: build
-          args: --target armv7-unknown-linux-gnueabihf --exclude query-test-macros --exclude query-engine-tests --exclude query-tests-setup --release
+          args: --target armv7-unknown-linux-gnueabihf --release
       - name: Rename Node API file
         run: |
           mv ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/libquery_engine.so ${{ github.workspace }}/target/armv7-unknown-linux-gnueabihf/release/libquery_engine_napi.so.node
