@@ -1,3 +1,10 @@
+### DEPRECATED
+
+Raspberry Pi has released official 64 bit OS image now: https://www.raspberrypi.com/news/raspberry-pi-os-64-bit/
+
+I will recommend everyone to upgrade to that now. This repository is no longer maintained. 
+
+
 ## Prisma precompiled builds for Raspberry Pi (armv7)
 
 This repository contains precompiled [prisma-engines](https://github.com/prisma/prisma-engines) for Raspberry Pi.
